@@ -1,13 +1,17 @@
+"use client";
 import { Box, Stack } from "@mui/system";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import { SignIn, SignOutButton, SignedIn } from "@clerk/nextjs";
-
+import { SignInButton, SignOutButton, SignedIn,SignedOut,useClerk } from "@clerk/nextjs";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
+import ModalSignUp from "./ModalSignUp";
+import { Button } from "@mui/material";
 
 
 export function Header() {
-
+  const { signOut } = useClerk();
+  
   return (
     <AppBar
       sx={{
@@ -16,8 +20,8 @@ export function Header() {
         paddingTop: "0.5rem",
       }}
     >
-      <Toolbar>
-        <Stack direction="row" justifyContent="space-between" width="100%">
+      <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Stack direction="row" justifyContent="space-between">
           <Box
             component={Link}
             href={"/"}
@@ -28,13 +32,18 @@ export function Header() {
           </Box>
         </Stack>
         <Stack direction="row" alignItems="end" spacing={4}>
-          <SignIn />
+          <SignedOut>
+            <SignInButton>
+              <ModalSignUp />
+            </SignInButton>
+          </SignedOut>
           <SignedIn>
-            <div>You are signed in</div>
+            <SignOutButton signOutCallback={() => signOut()}>
+              <Button variant="contained" startIcon={<LogoutIcon />}>
+                Sign out
+              </Button>
+            </SignOutButton>
           </SignedIn>
-          <SignOutButton>
-            <button>Sign out</button>
-          </SignOutButton>
         </Stack>
       </Toolbar>
     </AppBar>
