@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { Inter } from "next/font/google";
-import { cookies } from "next/headers";
 
 const inter = Inter({
   subsets: ["latin"],
