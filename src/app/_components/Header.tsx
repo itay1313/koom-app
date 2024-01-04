@@ -2,16 +2,22 @@
 import { Box, Stack } from "@mui/system";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import { SignInButton, SignOutButton, SignedIn,SignedOut,useClerk } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignOutButton,
+  SignedIn,
+  SignedOut,
+  useClerk,
+} from "@clerk/nextjs";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
 import ModalSignUp from "./ModalSignUp";
 import { Button } from "@mui/material";
-
+import Navigation from "./Navigation";
 
 export function Header() {
   const { signOut } = useClerk();
-  
+
   return (
     <AppBar
       sx={{
@@ -31,6 +37,7 @@ export function Header() {
             logo
           </Box>
         </Stack>
+        <Navigation />
         <Stack direction="row" alignItems="end" spacing={4}>
           <SignedOut>
             <SignInButton>

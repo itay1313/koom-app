@@ -1,26 +1,34 @@
 import Link from "next/link";
-import { Header } from "./_components/Header";
+import CoolButton from "./_components/CoolButton";
+import { SignedIn, useUser, SignedOut } from "@clerk/nextjs";
 
-
-export default async function Home() {
-
+export default function Home() {
+  const { user } = useUser();
+  
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+    <>
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <Header />
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
+        <SignedOut>
+          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+            Koom. <span className="text-primary">It's</span> Time
+          </h1>
+        </SignedOut>
+        <SignedIn>
+          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+            Welcome. <span className="text-primary">{user?.firstName}</span>{" "}
+            Wazap?
+          </h1>
+        </SignedIn>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
           <Link
             className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
+            href=""
             target="_blank"
           >
             <h3 className="text-2xl font-bold">First Steps →</h3>
             <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
+              Just the basics - Everything you need to know to set up your your
+              life.
             </div>
           </Link>
           <Link
@@ -28,22 +36,22 @@ export default async function Home() {
             href="https://create.t3.gg/en/introduction"
             target="_blank"
           >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
+            <h3 className="text-2xl font-bold">Waking up →</h3>
             <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
+              The basics of waking up and how to get started.
             </div>
           </Link>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <p className="text-2xl text-white">
-    hey
-          </p>
+          <h3 className="text-3xl text-white">
+            To wake up, you need to create an account.
+          </h3>
         </div>
-
-        <CrudShowcase />
+        <SignedOut>
+          <CoolButton />
+        </SignedOut>
       </div>
-    </main>
+    </>
   );
 }
 
@@ -57,7 +65,6 @@ async function CrudShowcase() {
       ) : (
         <p>You have no posts yet.</p>
       )} */}
-      s
     </div>
   );
 }

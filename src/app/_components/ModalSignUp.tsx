@@ -2,12 +2,9 @@ import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import {
-  SignIn
-} from "@clerk/nextjs";
-  import FaceIcon from "@mui/icons-material/Face";
+import { SignIn } from "@clerk/nextjs";
+import FaceIcon from "@mui/icons-material/Face";
+import CloseTwoToneIcon from "@mui/icons-material/CloseTwoTone";
 import { Button } from "@mui/material";
 
 export default function ModalSignUp() {
@@ -36,20 +33,11 @@ export default function ModalSignUp() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogActions>
-          <Button onClick={handleClose} autoFocus>
-            X
-          </Button>
+        <DialogActions sx={{ position: "absolute", right: 0 }}>
+          <CloseTwoToneIcon onClick={handleClose} sx={{ cursor: "pointer" }} />
         </DialogActions>
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
         <DialogContent>
           <SignIn />
-          <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-          </DialogContentText>
         </DialogContent>
       </Dialog>
     </React.Fragment>
