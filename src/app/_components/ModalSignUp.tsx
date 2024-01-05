@@ -3,9 +3,8 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import { SignIn } from "@clerk/nextjs";
-import FaceIcon from "@mui/icons-material/Face";
 import CloseTwoToneIcon from "@mui/icons-material/CloseTwoTone";
-import { Button } from "@mui/material";
+import CoolButton from "./CoolButton";
 
 export default function ModalSignUp() {
   const [open, setOpen] = React.useState(false);
@@ -20,13 +19,8 @@ export default function ModalSignUp() {
 
   return (
     <React.Fragment>
-      <Button
-        variant="contained"
-        endIcon={<FaceIcon />}
-        onClick={handleClickOpen}
-      >
-        Sign In
-      </Button>
+      <CoolButton onClick={handleClickOpen} />
+
       <Dialog
         open={open}
         onClose={handleClose}

@@ -1,6 +1,15 @@
-const CoolButton = ({}) => {
+import React from "react";
+
+type CoolButtonProps = {
+  onClick: () => void; // Function type, no arguments, returns void
+};
+
+const CoolButton: React.FC<CoolButtonProps> = ({ onClick }) => {
   return (
-    <button className="group relative z-10 h-12 w-32 cursor-pointer overflow-hidden rounded-md border-none bg-primary p-2 text-xl font-bold text-black">
+    <button
+      onClick={onClick}
+      className="group relative z-10 h-12 w-32 cursor-pointer overflow-hidden rounded-md border-none bg-primary p-2 text-xl font-bold text-black"
+    >
       Sign in!
       <span className="absolute -left-2 -top-8 h-32 w-36 origin-left rotate-12 scale-x-0 transform bg-white transition-transform duration-1000 group-hover:scale-x-100 group-hover:duration-500"></span>
       <span className="absolute -left-2 -top-8 h-32 w-36 origin-left rotate-12 scale-x-0 transform bg-indigo-400 transition-transform duration-700 group-hover:scale-x-100 group-hover:duration-700"></span>
